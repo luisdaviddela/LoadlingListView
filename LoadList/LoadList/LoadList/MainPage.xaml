@@ -7,10 +7,10 @@
     <StackLayout>
         <!-- Place new controls here -->
         <local:LoadingListView
-            ItemsSource="{Binding FileNames}"
-            LoadMoreCommand="{Binding LoadMoreItemsCommand}">
+            ItemsSource="{Binding ItemsList}"
+            LoadMoreCommand="{Binding RefreshCommand}">
         </local:LoadingListView>
-        
+        <ActivityIndicator IsRunning="{Binding LoadingAct}" Color="Green"/>
     </StackLayout>
 
 </ContentPage>
