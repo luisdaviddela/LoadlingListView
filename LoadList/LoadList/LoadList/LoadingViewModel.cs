@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
-
 namespace LoadList
 {
     public class LoadingViewModel: INotifyPropertyChanged
     {
-        public int LastInList=0;
-        public ObservableCollection<string> ItemsList { get; }
-        = new ObservableCollection<string>();
-        private bool isloading;
-        public Command RefreshCommand { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        public ObservableCollection<string> ItemsList { get; }
+        = new ObservableCollection<string>();
+        public Command RefreshCommand { get; set; }
+        public int LastInList=0;
+        private bool isloading;
         public bool LoadingAct
         {
             get { return isloading; }
@@ -30,8 +30,7 @@ namespace LoadList
                 OnPropertyChanged(nameof(LoadingAct));
             }
         }
-
-
+        
         public LoadingViewModel()
         {
             for (int i = 1; i <= 30; i++)

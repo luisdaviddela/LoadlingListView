@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:LoadList"
              x:Class="LoadList.MainPage">
-
     <StackLayout>
         <!-- Place new controls here -->
         <local:LoadingListView
@@ -12,5 +11,4 @@
         </local:LoadingListView>
         <ActivityIndicator IsRunning="{Binding LoadingAct}" Color="Green"/>
     </StackLayout>
-
 </ContentPage>

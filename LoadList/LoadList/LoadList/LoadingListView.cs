@@ -8,7 +8,8 @@ namespace LoadList
 {
     public class LoadingListView: ListView
     {
-        public static readonly BindableProperty LoadMoreCommandProperty = BindableProperty.Create<LoadingListView, ICommand>(bp => bp.LoadMoreCommand, default(ICommand));
+        public static readonly BindableProperty LoadMoreCommandProperty
+            = BindableProperty.Create<LoadingListView, ICommand>(bp => bp.LoadMoreCommand, default(ICommand));
 
         public ICommand LoadMoreCommand
         {
@@ -18,15 +19,15 @@ namespace LoadList
 
         public LoadingListView()
         {
-            RegisterLayzyLoading();
+            RegisterLoading();
         }
 
         public LoadingListView(ListViewCachingStrategy cachingStrategy) : base(cachingStrategy)
         {
-            RegisterLayzyLoading();
+            RegisterLoading();
         }
 
-        void RegisterLayzyLoading()
+        void RegisterLoading()
         {
             ItemAppearing += InfiniteListView_ItemAppearing;
         }
@@ -34,7 +35,7 @@ namespace LoadList
         object lastItem;
         void InfiniteListView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
-            // if last item is in view: load more items
+            // Cuando llega al final de la lista ejecuta el evento
             if (ItemsSource is IList items && e.Item == items[items.Count - 1])
             {
                 if (e.Item != lastItem && LoadMoreCommand != null && LoadMoreCommand.CanExecute(null))
